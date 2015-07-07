@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Syed Qarib">
+
+        <title>Web Control - Basic Example</title>
+
+        <!-- Required Scripts -->
+        <script src="../jquery-1.10.1.min.js"></script>
+        <script src="../socket.io-1.3.4.js"></script>
+        <script src="../webcontrol.plugin.js"></script>
+
+        <!-- Demo Scripts -->
+        <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./assets/css/demo.css" rel="stylesheet">
+        <script src="./assets/js/bootstrap.js"></script>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Node Web Control</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <div class="starter-template" id="about">
+                <h1>Here is about content</h1>
+                <p class="lead">Lorem ipsum dolor sit amet, autem menandri ei vix, vero splendide his cu. Mei ut clita omnesque, nam ut errem graece molestiae. Quas admodum theophrastus vix at, has ex esse senserit, vix ut facilisis percipitur. Mutat liber mel ex, eum singulis volutpat incorrupte ea. Te qui habemus moderatius, ad legimus concludaturque nec, doctus suscipiantur ne ius.
+                    His an propriae convenire periculis, vide verear docendi cum te. Eu atqui denique vim, fugit docendi nam cu. Ignota appareat delicatissimi usu an, cu pro quando assentior. Amet hinc idque eum in. Ne rebum dicit quo, eos ex assueverit honestatis.
+                    His an propriae convenire periculis, vide verear docendi cum te. Eu atqui denique vim, fugit docendi nam cu. Ignota appareat delicatissimi usu an, cu pro quando assentior. Amet hinc idque eum in. Ne rebum dicit quo, eos ex assueverit honestatis.
+                    His an propriae convenire periculis, vide verear docendi cum te. Eu atqui denique vim, fugit docendi nam cu. Ignota appareat delicatissimi usu an, cu pro quando assentior. Amet hinc idque eum in. Ne rebum dicit quo, eos ex assueverit honestatis.
+                    His an propriae convenire periculis, vide verear docendi cum te. Eu atqui denique vim, fugit docendi nam cu. Ignota appareat delicatissimi usu an, cu pro quando assentior. Amet hinc idque eum in. Ne rebum dicit quo, eos ex assueverit honestatis.
+                    His an propriae convenire periculis, vide verear docendi cum te. Eu atqui denique vim, fugit docendi nam cu. Ignota appareat delicatissimi usu an, cu pro quando assentior. Amet hinc idque eum in. Ne rebum dicit quo, eos ex assueverit honestatis.
+                    Utinam recusabo sit at. Eum et vero utinam voluptaria. Eu simul oratio corrumpit cum, vel vero accusamus concludaturque ea. Diam inermis detracto mei ad, accusam ullamcorper in usu, ex ius convenire principes theophrastus. Nam ad hinc dicit.</p>
+            </div>
+
+            <div class="starter-template" id="contact">
+                <h1>Here is contact content</h1>
+                <p class="lead">
+                    Utinam recusabo sit at. Eum et vero utinam voluptaria. Eu simul oratio corrumpit cum, vel vero accusamus concludaturque ea. Diam inermis detracto mei ad, accusam ullamcorper in usu, ex ius convenire principes theophrastus. Nam ad hinc dicit.
+                    Mei partem probatus cu. Cu mucius definitiones sit. Sit ei veritus noluisse scripserit, id his quod erat melius. Graece aeterno expetendis vix ei, cu pri sale mentitum nominati. Eos primis denique democritum ex, id sed appetere intellegam.
+                    Mei partem probatus cu. Cu mucius definitiones sit. Sit ei veritus noluisse scripserit, id his quod erat melius. Graece aeterno expetendis vix ei, cu pri sale mentitum nominati. Eos primis denique democritum ex, id sed appetere intellegam.
+                    Mei partem probatus cu. Cu mucius definitiones sit. Sit ei veritus noluisse scripserit, id his quod erat melius. Graece aeterno expetendis vix ei, cu pri sale mentitum nominati. Eos primis denique democritum ex, id sed appetere intellegam.
+                    Mei partem probatus cu. Cu mucius definitiones sit. Sit ei veritus noluisse scripserit, id his quod erat melius. Graece aeterno expetendis vix ei, cu pri sale mentitum nominati. Eos primis denique democritum ex, id sed appetere intellegam.
+                    Luptatum volutpat eam ad, vel paulo verear ne, mea ut utamur euripidis. Sint quodsi referrentur his eu. Eam tempor voluptatum ei. Nec eu rebum quodsi appetere. Ne numquam expetendis disputationi his.</p>
+            </div>
+
+        </div><!-- /.container -->
+
+        <script>
+            $(document).ready(function () {
+                /**
+                 * Initiate Web Control with recieving events
+                 */
+                webControl({
+                    events: {
+                        scrollup: function (val) {
+                            console.log("Scrolling up " + val);
+                            $('html,body').animate({
+                                scrollTop: $(window).scrollTop() - val
+                            });
+                        },
+                        scrolldown: function (val) {
+                            console.log("Scrolling down " + val);
+                            $('html,body').animate({
+                                scrollTop: $(window).scrollTop() + val
+                            });
+                        },
+                        scrollto: function (elem) {
+                            console.log("Scrolling to " + elem);
+                            $('html,body').animate({
+                                scrollTop: ($(elem).offset().top)
+                            });
+                        }
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
